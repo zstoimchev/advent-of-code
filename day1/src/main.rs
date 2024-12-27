@@ -9,8 +9,24 @@ fn main() {
 
     load_vec(&mut v1, &mut v2).expect("probljem loding vektors");
     
-    let res: i32 = calc_res(&mut v1, &mut v2);
-    println!("{res}");
+    println!("Part II: {}", calc_simil(&v1, &v2));
+    println!("Part I:  {}", calc_res(&mut v1, &mut v2));
+}
+
+fn calc_simil(v1: &Vec<i32>, v2: &Vec<i32>) -> i32 {
+    let mut res = 0;
+
+    for i in 0..v1.len() {
+        let mut c = 0;
+        for j in 0..v2.len() {
+            if v1[i] == v2[j] {
+                c += 1;
+            }
+        }
+        res += c*v1[i];
+    }
+
+    return res;
 }
 
 fn calc_res(v1: &mut Vec<i32>, v2: &mut Vec<i32>) -> i32 {
